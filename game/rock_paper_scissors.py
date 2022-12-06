@@ -1,10 +1,10 @@
+from random import randrange
 class WelcomeUser:
 
     def __int__(self):
         pass
 
-    @staticmethod
-    def welcome_user():
+    def welcome_user(self):
         user_name = input("Welcome, please enter your name:").capitalize()
         welcome_message = "Hello, " + user_name + " thank you for playing my game!!!"
         print(welcome_message)
@@ -12,8 +12,7 @@ class WelcomeUser:
 
 class Paper:
 
-    @staticmethod
-    def paper_attributes():
+    def paper_attributes(self):
         strong_against = 'Rock'
         weak_against = 'Scissors'
         return strong_against,weak_against
@@ -21,56 +20,61 @@ class Paper:
 
 class Rock:
 
-    @staticmethod
-    def rock_attributes():
+    def rock_attributes(self):
         strong_against = 'Scissors'
         weak_against = 'Paper'
         return strong_against,weak_against
 
 
 class Scissors:
-
-    @staticmethod
-    def scissors_attributes():
+    def scissors_attributes(self):
         strong_against = 'Paper'
         weak_against = ' Rock'
         return strong_against,weak_against
 
 
+class Lizard:
+    def lizard_attributes(self):
+        strong_against = 'Spock'
+        weak_against = ' Scissors'
+        return strong_against,weak_against
+
+
+class Spock:
+    def spock_attributes(self):
+        strong_against = ['Scissors','Rock']
+        weak_against = ['Lizard','Paper']
+        return strong_against,weak_against
+
+class ComputerBasicChoice:
+    def __int__(self):
+        pass
+    def basic_figures(self):
+        basic_figures = ['Paper','Rock','Scissors']
+        return basic_figures[randrange(3)]
 
 
 class UserChoice(Rock,Paper,Scissors):
+    def __int__(self,rock_attributes):
+        self.rock_attributes = rock_attributes
 
-    @staticmethod
-    def user_choice():
+    def user_choice(self):
         user_choice = input("What mode would you prefer basic or advanced? :").capitalize()
         if user_choice == "Basic":
-            print("You are playing a basic mode, please select one of the three figures "
-                  "rock, paper or scissors")
-            user_figure = input("Please select your figure :").capitalize()
-            # check attributes of BasicFiguresAttributes for rock to see what it is strong and weak against
-            # Invoke a method outputting computer's choice here
-            if user_figure == "Rock":
-                print("You selected rock")
-                print("A rock is strong against " + Rock.rock_attributes()[0])
-                print("A rock is weak against " + Rock.rock_attributes()[1])
-            elif user_figure == "Paper":
-                print("You selected paper")
-                print("The paper is strong against " + Paper.paper_attributes()[0])
-                print("The paper is weak against " + Paper.paper_attributes()[1])
-            elif user_figure == "Scissors":
-                print("You selected scissors")
-                print("Scissors are strong against " + Scissors.scissors_attributes()[0])
-                print("Scissors are weak against " + Scissors.scissors_attributes()[1])
-            else:
-                raise RuntimeError("Incorrect figure")
-        elif user_choice == "Advanced":
-            #Lizard,spock tec logic here
-            print("You are playing an advanced mode")
+            print('Basic')
+            save_user_choice = input("Please select your figure")
+            return save_user_choice
         else:
             raise RuntimeError("No such mode, please re-run the game and select the correct modem")
 
+class Fight(ComputerBasicChoice,UserChoice):
+    def fight(self):
+        user_choice = UserChoice.user_choice()
+        computer_choice = ComputerBasicChoice.basic_figures()
+        return user_choice,computer_choice
 
-WelcomeUser.welcome_user()
-UserChoice.user_choice()
 
+
+WelcomeUser.welcome_user(self=None)
+UserChoice.user_choice(self=None)
+print(ComputerBasicChoice.basic_figures(self=None))
