@@ -1,84 +1,71 @@
-from random import randrange
+from enum import Enum
+from typing import List
 
 
-class WelcomeUser:
-
-    def __int__(self):
-        pass
-
-    def welcome_user(self):
-        user_name = input("Welcome, please enter your name:").capitalize()
-        welcome_message = "Hello, " + user_name + " thank you for playing my game!!!"
-        print(welcome_message)
+class Result(Enum):
+    WIN = 1
+    LOSS = -1
+    TIE = 0
 
 
-class Paper:
-
-    def strong_against(self):
-        return 'Rock'
-
-    def weak_against(self):
-        return 'Scissors'
+class FigureName(Enum):
+    ROCK = "ROCK"
+    PAPER = "PAPER"
+    SCISSORS = "SCISSORS"
 
 
 class Rock:
-    def strong_against(self):
-        return 'Scissors'
+    figure_name = FigureName.ROCK.value
+    strong_against = [FigureName.SCISSORS.value]
+    weak_against = [FigureName.PAPER.value]
 
-    def weak_against(self):
-        return 'Paper'
+    def fight(self, other_figure):
+        if other_figure in Rock.strong_against:
+            return Result.WIN
+        elif other_figure == Rock.figure_name:
+            return Result.TIE
+        elif other_figure in Rock.weak_against:
+            return Result.LOSS
+        else:
+            raise RuntimeError('Unrecognized figure')
+
+
+class Paper:
+    figure_name = FigureName.PAPER.value
+    strong_against = [FigureName.ROCK.value]
+    weak_against = [FigureName.SCISSORS.value]
+
+    def fight(self,other_figure):
+        if other_figure in Paper.strong_against:
+            return Result.WIN
+        elif other_figure == Paper.figure_name:
+            return Result.TIE
+        elif other_figure in Paper.weak_against:
+            return Result.LOSS
+        else:
+            raise RuntimeError('Unrecognized figure')
+
 
 class Scissors:
-    def strong_against(self):
-        return 'Paper'
+    figure_name = FigureName.SCISSORS.value
+    strong_against = [FigureName.PAPER.value]
+    weak_against = [FigureName.ROCK.value]
 
-    def weak_against(self):
-        return 'Rock'
-
-
-class ComputerBasicChoice:
-
-    def __int__(self):
-        pass
-
-    def basic_figures(self):
-        basic_figures = ['Paper','Rock','Scissors']
-        return basic_figures[randrange(3)]
+    def fight(self,other_figure):
+        if other_figure in Scissors.strong_against:
+            return Result.WIN
+        elif other_figure == Scissors.figure_name:
+            return Result.TIE
+        elif other_figure in Scissors.weak_against:
+            return Result.LOSS
+        else:
+            raise RuntimeError('Unrecognized figure')
 
 
-class UserChoice():
+rock = Rock()
+paper = Paper()
+scissors = Scissors()
 
-    def user_selected_figure(self):
-        user_figure = input("Please select your figure: ").capitalize()
-        return user_figure
-
-
-class Fight(ComputerBasicChoice,UserChoice,Rock,Paper,Scissors):
-
-    def decider(self):
-        computer_figure = ComputerBasicChoice.basic_figures(ComputerBasicChoice)
-        print(computer_figure)
-        user_figure = UserChoice.user_selected_figure(UserChoice)
-        if computer_figure == 'Rock':
-            if user_figure == Rock.weak_against(Rock):
-                print('User wins')
-            elif computer_figure == user_figure:
-                print("it's a tie")
-            else:
-                print('Computer wins')
-        elif computer_figure == 'Paper':
-            if user_figure == Paper.weak_against(Paper):
-                print('User wins')
-            elif computer_figure == user_figure:
-                print("it's a tie")
-            else:
-                print('Computer wins')
-        elif computer_figure == 'Scissors':
-            if user_figure == Scissors.weak_against(Scissors):
-                print('User wins')
-            elif computer_figure == user_figure:
-                print("it's a tie")
-            else:
-                print('Computer wins')
-
-Fight.decider(self=None)
+print(paper.fight('ROCK'))
+print(rock.fight("ROCK"))
+print(scissors.fight('ROCK'))
