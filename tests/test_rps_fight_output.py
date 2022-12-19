@@ -1,5 +1,6 @@
 import pytest
-from game.rock_paper_scissors_v2 import Result,Rock,Paper,Scissors
+from game.Figures import Rock, Paper, Scissors, Result
+
 
 @pytest.mark.parametrize("test_input,expected",
                          [

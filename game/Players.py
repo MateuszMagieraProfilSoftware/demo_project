@@ -1,5 +1,7 @@
 import random
 
+from game.Figures import NameToClass
+
 
 class Player:
     def get_figure(self):
