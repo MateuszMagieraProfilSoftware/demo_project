@@ -46,27 +46,25 @@ class Scissors(Figure):
 
 class NameToClass:
     name_to_class_mapping = {
-        FigureName.ROCK.value.lower().capitalize(): Rock(),
-        FigureName.PAPER.value.lower().capitalize(): Paper(),
-        FigureName.SCISSORS.value.lower().capitalize(): Scissors()
+        FigureName.ROCK.value: Rock(),
+        FigureName.PAPER.value: Paper(),
+        FigureName.SCISSORS.value: Scissors()
     }
-
-
-class HumanPlayer(Figure):
-
+class Player:
+    def get_figure(self):
+        raise NotImplementedError
+class HumanPlayer(Player):
     def get_figure(self):
         selected = None
         while not selected:
-            selected = NameToClass.name_to_class_mapping.get(input('Select a figure: ').capitalize())
+            selected = NameToClass.name_to_class_mapping.get(input('Select a figure: ').upper())
             if not selected:
-                print('Incorrect input,please select again: ')
+                print('Incorrect input,please select again (rock,paper or scissors): ')
         return selected
-class ComputerPlayer(HumanPlayer):
+class ComputerPlayer(Player):
     def get_figure(self):
-        computer_figures = []
-        for value in NameToClass.name_to_class_mapping.values():
-            computer_figures.append(value)
-        return computer_figures[random.randint(0,2)]
+        computer_figures = [value for value in NameToClass.name_to_class_mapping.values()]
+        return random.choice(computer_figures)
 
 
 # print(Rock().fight(Paper()))
