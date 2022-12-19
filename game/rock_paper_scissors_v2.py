@@ -1,6 +1,6 @@
+import random
 from enum import Enum
 from typing import List
-
 
 class Result(Enum):
     WIN = 1
@@ -31,6 +31,7 @@ class Figure:
             raise RuntimeError("Unrecognized figure")
 
 
+
 class Rock(Figure):
     figure_name = FigureName.ROCK
     strong_against = [FigureName.SCISSORS]
@@ -44,4 +45,36 @@ class Scissors(Figure):
     strong_against = [FigureName.PAPER]
 
 
-print(Rock().fight(Paper()))
+
+class HumanPlayer(Figure):
+    name_to_class_mapping = {
+        FigureName.ROCK.value.lower().capitalize(): Rock(),
+        FigureName.PAPER.value.lower().capitalize(): Paper(),
+        FigureName.SCISSORS.value.lower().capitalize(): Scissors()
+    }
+    def get_figure(self):
+        selected = None
+        while not selected:
+            selected = self.name_to_class_mapping.get(input('Select a figure: ').capitalize())
+            if not selected:
+                print('Incorrect input,please select again: ')
+        return selected
+class ComputerPlayer(HumanPlayer):
+    name_to_class_mapping = {
+        'Rock': Rock(),
+        'Paper': Paper(),
+        'Scissors': Scissors()
+    }
+    def get_figure(self):
+        computer_figures = []
+        for value in self.name_to_class_mapping.values():
+            computer_figures.append(value)
+        return computer_figures[random.randint(0,2)]
+
+
+# print(Rock().fight(Paper()))
+# print(ComputerPlayer().get_figure())
+
+print(HumanPlayer().get_figure().fight(ComputerPlayer().get_figure()))
+
+# print(HumanPlayer().get_figure())
