@@ -1,6 +1,18 @@
+from enum import Enum
 from typing import List
 
-from game.rock_paper_scissors_v2 import FigureName, Result
+class Result(Enum):
+    WIN = 1
+    LOSS = -1
+    TIE = 0
+
+
+class FigureName(Enum):
+    ROCK = "ROCK"
+    PAPER = "PAPER"
+    SCISSORS = "SCISSORS"
+    LIZARD = "LIZARD"
+    SPOCK = "SPOCK"
 
 
 class Figure:
@@ -16,3 +28,20 @@ class Figure:
             return Result.TIE
         else:
             raise RuntimeError("Unrecognized figure")
+
+class Rock(Figure):
+    figure_name = FigureName.ROCK
+    strong_against = [FigureName.SCISSORS]
+
+class Paper(Figure):
+    figure_name = FigureName.PAPER
+    strong_against = [FigureName.ROCK]
+
+class Scissors(Figure):
+    figure_name = FigureName.SCISSORS
+    strong_against = [FigureName.PAPER]
+class NameToClass:
+    name_to_class_mapping = {
+        FigureName.ROCK.value: Rock(),
+        FigureName.PAPER.value: Paper(),
+        FigureName.SCISSORS.value: Scissors()}
