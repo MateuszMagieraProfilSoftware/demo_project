@@ -44,30 +44,27 @@ class Scissors(Figure):
     figure_name = FigureName.SCISSORS
     strong_against = [FigureName.PAPER]
 
-
-
-class HumanPlayer(Figure):
+class NameToClass:
     name_to_class_mapping = {
         FigureName.ROCK.value.lower().capitalize(): Rock(),
         FigureName.PAPER.value.lower().capitalize(): Paper(),
         FigureName.SCISSORS.value.lower().capitalize(): Scissors()
     }
+
+
+class HumanPlayer(Figure):
+
     def get_figure(self):
         selected = None
         while not selected:
-            selected = self.name_to_class_mapping.get(input('Select a figure: ').capitalize())
+            selected = NameToClass.name_to_class_mapping.get(input('Select a figure: ').capitalize())
             if not selected:
                 print('Incorrect input,please select again: ')
         return selected
 class ComputerPlayer(HumanPlayer):
-    name_to_class_mapping = {
-        'Rock': Rock(),
-        'Paper': Paper(),
-        'Scissors': Scissors()
-    }
     def get_figure(self):
         computer_figures = []
-        for value in self.name_to_class_mapping.values():
+        for value in NameToClass.name_to_class_mapping.values():
             computer_figures.append(value)
         return computer_figures[random.randint(0,2)]
 
