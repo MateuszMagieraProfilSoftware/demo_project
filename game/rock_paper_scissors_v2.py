@@ -1,6 +1,8 @@
 import random
 from enum import Enum
-from typing import List
+
+from game.Figures import Figure
+
 
 class Result(Enum):
     WIN = 1
@@ -16,21 +18,24 @@ class FigureName(Enum):
     SPOCK = "SPOCK"
 
 
-class Figure:
-    figure_name : FigureName
-    strong_against: List[FigureName]
+class Player:
+    def get_figure(self):
+        raise NotImplementedError
 
-    def fight(self,other_figure: 'Figure'):
-        if self.figure_name in other_figure.strong_against:
-            return Result.LOSS
-        elif other_figure.figure_name in self.strong_against:
-            return Result.WIN
-        elif other_figure.figure_name == self.figure_name:
-            return Result.TIE
-        else:
-            raise RuntimeError("Unrecognized figure")
+class HumanPlayer(Player):
+    def get_figure(self):
+        selected = None
+        while not selected:
+            selected = NameToClass.name_to_class_mapping.get(input('Select a figure: ').upper())
+            if not selected:
+                print('Incorrect input,please select again (rock,paper or scissors): ')
+        return selected
 
 
+class ComputerPlayer(Player):
+    def get_figure(self):
+        computer_figures = [value for value in NameToClass.name_to_class_mapping.values()]
+        return random.choice(computer_figures)
 
 class Rock(Figure):
     figure_name = FigureName.ROCK
@@ -43,28 +48,13 @@ class Paper(Figure):
 class Scissors(Figure):
     figure_name = FigureName.SCISSORS
     strong_against = [FigureName.PAPER]
-
 class NameToClass:
     name_to_class_mapping = {
         FigureName.ROCK.value: Rock(),
         FigureName.PAPER.value: Paper(),
         FigureName.SCISSORS.value: Scissors()
     }
-class Player:
-    def get_figure(self):
-        raise NotImplementedError
-class HumanPlayer(Player):
-    def get_figure(self):
-        selected = None
-        while not selected:
-            selected = NameToClass.name_to_class_mapping.get(input('Select a figure: ').upper())
-            if not selected:
-                print('Incorrect input,please select again (rock,paper or scissors): ')
-        return selected
-class ComputerPlayer(Player):
-    def get_figure(self):
-        computer_figures = [value for value in NameToClass.name_to_class_mapping.values()]
-        return random.choice(computer_figures)
+
 
 
 # print(Rock().fight(Paper()))
