@@ -1,11 +1,8 @@
 import pytest
-from game.Players import HumanPlayer,ComputerPlayer,Player
 
-@pytest.mark.parametrize("test_input,expected",
-                         [
-                             (issubclass(HumanPlayer,Player),
-                              issubclass(ComputerPlayer,Player)
-                              )
-                         ])
-def test_players(test_input,expected):
-    assert test_input == expected
+from game.Figures import Figure
+from game.Players import ComputerPlayer
+
+
+def test_computer_choice():
+    assert isinstance(ComputerPlayer().get_figure(),Figure)

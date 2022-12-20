@@ -45,3 +45,5 @@ class NameToClass:
         FigureName.ROCK.value: Rock(),
         FigureName.PAPER.value: Paper(),
         FigureName.SCISSORS.value: Scissors()}
+
+
