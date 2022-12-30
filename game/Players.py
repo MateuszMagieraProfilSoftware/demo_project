@@ -22,3 +22,5 @@ class ComputerPlayer(Player):
         computer_figures = [value for value in NameToClass.name_to_class_mapping.values()]
         return random.choice(computer_figures)
 
+
+# print(HumanPlayer().get_figure().fight(ComputerPlayer().get_figure()))

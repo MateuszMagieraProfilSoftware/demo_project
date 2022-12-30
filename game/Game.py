@@ -21,4 +21,20 @@ class Game:
                     break
             else:
                 continue
-print(Game().add_player())
+    def how_many_players(self):
+        while True:
+            how_many_players = input('How many players would you like to add? : ')
+            if int(how_many_players) < 2:
+                print('There cannot be less than 2 players, please try again')
+                continue
+            for _ in range(int(how_many_players)):
+                Game().add_player()
+            break
+
+    def start(self):
+        Game().how_many_players()
+
+
+
+
+print(Game().start())
