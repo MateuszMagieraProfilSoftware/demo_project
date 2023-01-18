@@ -4,6 +4,8 @@ from game.Figures import NameToClass
 
 
 class Player:
+    def __init__(self,username):
+        self.username = username
     def get_figure(self):
         raise NotImplementedError
 
