@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ca13417c-d82c-4a9e-91e9-37891a744731" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/Figures.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/Figures.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/Players.py" beforeDir="false" afterPath="$PROJECT_DIR$/game/Players.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +41,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python tests.pytest for test_game.test_start">
+  <component name="RunManager" selected="Python.Game">
     <configuration name="Game" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="demo_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -148,9 +150,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Game" />
         <item itemvalue="Python tests.pytest for test_game.test_start" />
         <item itemvalue="Python tests.pytest in test_game.py" />
-        <item itemvalue="Python.Game" />
         <item itemvalue="Python tests.pytest for test_game.test_username" />
         <item itemvalue="Python tests.pytest for test_game.TestGame.test_game" />
       </list>

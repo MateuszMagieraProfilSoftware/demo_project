@@ -40,10 +40,25 @@ class Paper(Figure):
 class Scissors(Figure):
     figure_name = FigureName.SCISSORS
     strong_against = [FigureName.PAPER]
+class Lizard(Figure):
+    figure_name = FigureName.LIZARD
+    strong_against = [FigureName.SPOCK,FigureName.PAPER]
+
+class Spock(Figure):
+    figure_name = FigureName.SPOCK
+    strong_against = [FigureName.SCISSORS,FigureName.ROCK]
 class NameToClass:
     name_to_class_mapping = {
         FigureName.ROCK.value: Rock(),
         FigureName.PAPER.value: Paper(),
-        FigureName.SCISSORS.value: Scissors()}
-
+        FigureName.SCISSORS.value: Scissors()
+    }
+class AllFigures:
+    name_to_class_mapping = {
+        FigureName.ROCK.value: Rock(),
+        FigureName.PAPER.value: Paper(),
+        FigureName.SCISSORS.value: Scissors(),
+        FigureName.SPOCK.value: Spock(),
+        FigureName.LIZARD.value: Lizard()
+    }
 

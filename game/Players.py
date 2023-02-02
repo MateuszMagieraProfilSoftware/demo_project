@@ -1,6 +1,6 @@
 import random
 
-from game.Figures import NameToClass
+from game.Figures import NameToClass, AllFigures
 
 
 class Player:
@@ -17,11 +17,19 @@ class HumanPlayer(Player):
             if not selected:
                 print('Incorrect input,please select again (rock,paper or scissors): ')
         return selected
-
-
+    def get_advanced_figure(self):
+        selected = None
+        while not selected:
+            selected = AllFigures.name_to_class_mapping.get(input('Select an advanced figure: ').upper())
+            if not selected:
+                print('Incorrect input,please select again (rock,paper or scissors): ')
+            return selected
 class ComputerPlayer(Player):
     def get_figure(self):
         computer_figures = [value for value in NameToClass.name_to_class_mapping.values()]
+        return random.choice(computer_figures)
+    def get_advanced_figure(self):
+        computer_figures = [value for value in AllFigures.name_to_class_mapping.values()]
         return random.choice(computer_figures)
 
 
